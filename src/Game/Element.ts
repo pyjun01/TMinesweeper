@@ -1,0 +1,15 @@
+export type TUnopened = '🟦';
+export type TFlag = '🚩';
+export type TMine = '🧨';
+export type TEmpty = '🟫';
+export type TOne = '1️⃣';
+export type TTwo = '2️⃣';
+export type TThree = '3️⃣';
+export type TFour = '4️⃣';
+export type TFive = '5️⃣';
+export type TSix = '6️⃣';
+export type TSeven = '7️⃣';
+export type TEight = '8️⃣';
+export type TNine = '9️⃣';
+export type TOpened = TEmpty | TOne | TTwo | TThree | TFour | TFive | TSix | TSeven | TEight | TNine | TMine;
+export type TAll = TUnopened | TFlag | TOpened;
