@@ -28,7 +28,7 @@ type GameStatusChange<MergedEmptyPosList extends string[], MergedEmptyPosWithRel
         OriginalStage
       >
   : MineSweeper<
-      OpenedPos,
+      Get_All_Pos<Max>,
       FlagPos,
       FAILED,
       Max,
@@ -122,7 +122,7 @@ type PosSelector<
         MinePos,
         OriginalStage
       >
-  }
+};
 
 type MineSweeper<
   OpenedPos extends string,
@@ -145,7 +145,7 @@ type MineSweeper<
       : GameStatus extends SUCCESS
         ? WinEnding
         : 'err: Something wrong'
-  }
+};
 
 export type StartStage<Stages extends TOpened[][][], InitPos extends string, StageIndex extends number> = {
   start: Stages[Decrement<StageIndex>] extends infer TargetStage extends TOpened[][]
@@ -162,4 +162,4 @@ export type StartStage<Stages extends TOpened[][][], InitPos extends string, Sta
         >
       : `err: EmptyPosList data is invalid`
     : `err: stage${StageIndex} data is invalid`
-}
+};
