@@ -1,6 +1,6 @@
 import { TOpened } from './Element';
 import { StartStage } from './Impl';
-import { EasyStages, NormalStages } from './Stages';
+import { EasyStages, HardStages, NormalStages } from './Stages';
 import { GetAllNumbers, ToNumber } from '../utils';
 
 type StageSelector<Stages extends TOpened[][][], InitPos extends string> = {
@@ -12,4 +12,5 @@ type StageSelector<Stages extends TOpened[][][], InitPos extends string> = {
 export type LevelSelector = {
   EASY: StageSelector<EasyStages, '4x4'>;
   NORMAL: StageSelector<NormalStages, '10x10'>;
+  HARD: StageSelector<HardStages, '15x12'>;
 };
