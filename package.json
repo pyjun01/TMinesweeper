@@ -1,0 +1,14 @@
+{
+  "name": "typesweeper",
+  "version": "1.0.0",
+  "description": "Minesweeper game in Typescript type system",
+  "main": "src/index.ts",
+  "scripts": {
+  },
+  "keywords": ["typescript", "type game"],
+  "author": "pyjun01",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
