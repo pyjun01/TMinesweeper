@@ -139,14 +139,13 @@ export type Get_MergedEmptyPosLists<Stage extends TOpened[][], Min extends numbe
   : never;
 
 // for initial position
-type INIT_POINT = '4x4';
 export type InitialOpenedPos<
   MergedEmptyPosWithRelativesList extends string[],
-  InitPos extends string = INIT_POINT
+  InitPos extends string
 > = MergedEmptyPosWithRelativesList extends [infer Tg extends string, ...infer Rest extends string[]]
   ? [true] extends [Is_Overlaped<Tg, InitPos>]
     ? Tg
-    : InitialOpenedPos<Rest>
+    : InitialOpenedPos<Rest, InitPos>
   : InitPos;
 
 //
