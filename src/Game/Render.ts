@@ -34,8 +34,6 @@ type RenderEmoji<Index extends number> = `${Index}` extends infer V extends stri
 type RenderXAxisLoop<Length extends number, Index extends number = 1> = Index extends Length ? '' : `${RenderEmoji<Index>}${RenderXAxisLoop<Length, Increment<Index>>}`;
 type RenderXAxis<Length extends number> = `❌${RenderXAxisLoop<Increment<Length>>}`;
 
-type c = RenderXAxis<22>
-
 export type RenderRow<Row extends TOpened[], OpenedPos extends string, FlagPos extends string, YIndex extends number, XIndex extends number = 0> = Row extends [infer Curr extends TOpened, ...infer Rest extends TOpened[]]
     ? `${[true] extends [IsOverlaped<`${Increment<XIndex>}x${Increment<YIndex>}`, OpenedPos>]
             ? Curr
