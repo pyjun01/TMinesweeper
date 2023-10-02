@@ -18,7 +18,7 @@ export type Flatten<Arr extends unknown[], Result extends unknown[] = []> = Arr 
     : never
   : Result;
 
-export type Get_NumberList_From_Pos<S extends string> = S extends `${infer X}x${infer Y}`
+export type GetNumberListFromPos<S extends string> = S extends `${infer X}x${infer Y}`
   ? X extends keyof NumberTable
     ? Y extends keyof NumberTable
       ? [NumberTable[X], NumberTable[Y]]
@@ -26,6 +26,6 @@ export type Get_NumberList_From_Pos<S extends string> = S extends `${infer X}x${
     : never
   : never;
 
-export type Is_Overlaped<V1 extends string, V2 extends string> = [V1 & V2] extends [never] ? never : true;
+export type IsOverlaped<V1 extends string, V2 extends string> = [V1 & V2] extends [never] ? never : true;
 
-export type Get_All_Pos<Max extends number> = `${GetAllNumbers<Max, 1>}x${GetAllNumbers<Max, 1>}`;
+export type GetAllPos<Max extends number> = `${GetAllNumbers<Max, 1>}x${GetAllNumbers<Max, 1>}`;

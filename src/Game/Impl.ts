@@ -1,14 +1,14 @@
-import { Get_MergedEmptyPosLists, Get_Related_Pos, InitialOpenedPos } from './Compute'
+import { GetMergedEmptyPosLists, GetRelatedPos, InitialOpenedPos } from './Compute'
 import { FAILED, GAME_STATUS, ON_GOING, SUCCESS } from './Data'
 import { TOpened } from './Element'
 import { LoseEnding, WinEnding } from './Ending'
 import { RenderStage } from './Render'
-import { Decrement, Get_All_Pos } from '../utils'
+import { Decrement, GetAllPos } from '../utils'
 
 type GameStatusChange<MergedEmptyPosList extends string[], MergedEmptyPosWithRelativesList extends string[], MinePos extends string, Max extends number, OriginalStage extends TOpened[][], OpenedPos extends string, FlagPos extends string> = [OpenedPos & MinePos] extends [never]
-  ? [Exclude<Get_All_Pos<Max>, MinePos>] extends [OpenedPos & Exclude<Get_All_Pos<Max>, MinePos>]
+  ? [Exclude<GetAllPos<Max>, MinePos>] extends [OpenedPos & Exclude<GetAllPos<Max>, MinePos>]
     ? MineSweeper<
-        Get_All_Pos<Max>,
+        GetAllPos<Max>,
         FlagPos,
         SUCCESS,
         Max,
@@ -28,7 +28,7 @@ type GameStatusChange<MergedEmptyPosList extends string[], MergedEmptyPosWithRel
         OriginalStage
       >
   : MineSweeper<
-      Get_All_Pos<Max>,
+      GetAllPos<Max>,
       FlagPos,
       FAILED,
       Max,
@@ -55,8 +55,8 @@ type UnopenCommander<
     MinePos,
     Max,
     OriginalStage,
-    OpenedPos | Get_Related_Pos<TargetPos, MergedEmptyPosList, MergedEmptyPosWithRelativesList, MinePos>,
-    Exclude<FlagPos, Get_Related_Pos<TargetPos, MergedEmptyPosList, MergedEmptyPosWithRelativesList, MinePos>>
+    OpenedPos | GetRelatedPos<TargetPos, MergedEmptyPosList, MergedEmptyPosWithRelativesList, MinePos>,
+    Exclude<FlagPos, GetRelatedPos<TargetPos, MergedEmptyPosList, MergedEmptyPosWithRelativesList, MinePos>>
   >;
   flag: MineSweeper<
     OpenedPos,
@@ -101,7 +101,7 @@ type PosSelector<
   MinePos extends string,
   OriginalStage extends TOpened[][]
 > = {
-  [K in Exclude<Get_All_Pos<Max>, OpenedPos>]: [K] extends [FlagPos]
+  [K in Exclude<GetAllPos<Max>, OpenedPos>]: [K] extends [FlagPos]
     ? FlagCommander<
         K,
         OpenedPos,
@@ -149,7 +149,7 @@ type MineSweeper<
 
 export type StartStage<Stages extends TOpened[][][], InitPos extends string, StageIndex extends number> = {
   start: Stages[Decrement<StageIndex>] extends infer TargetStage extends TOpened[][]
-    ? Get_MergedEmptyPosLists<TargetStage> extends [infer MergedEmptyPosList extends string[], infer MergedEmptyPosWithRelativesList extends string[], infer MinePos extends string]
+    ? GetMergedEmptyPosLists<TargetStage> extends [infer MergedEmptyPosList extends string[], infer MergedEmptyPosWithRelativesList extends string[], infer MinePos extends string]
       ? MineSweeper<
           InitialOpenedPos<MergedEmptyPosWithRelativesList, InitPos>,
           '',
