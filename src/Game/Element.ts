@@ -2,6 +2,7 @@ export type TUnopened = '🟦';
 export type TFlag = '🚩';
 export type TMine = '🧨';
 export type TEmpty = '🟫';
+export type TZero = '0️⃣';
 export type TOne = '1️⃣';
 export type TTwo = '2️⃣';
 export type TThree = '3️⃣';
